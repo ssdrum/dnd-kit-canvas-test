@@ -3,6 +3,7 @@ import { Coordinates } from "@dnd-kit/utilities";
 import { DndContext, useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 import "./App.css";
+import { restrictToWindowEdges } from "@dnd-kit/modifiers";
 
 // Define the structure for each box
 interface Box {
@@ -39,6 +40,7 @@ const App: React.FC = () => {
 
   return (
     <DndContext
+      modifiers={[restrictToWindowEdges]}
       onDragEnd={({ delta, active }) => {
         console.log(delta, active);
         handleDragEnd(active.id as string, delta);
